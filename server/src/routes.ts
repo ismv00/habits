@@ -75,4 +75,56 @@ export async function  appRoutes(app: FastifyInstance) {
 
 
     })
+
+
+    //rota para completar ou náo completar os habitos
+    app.patch('/habits/:id/toogle', async(request) => {
+        const toogleHabitsParams = z.object({
+            id: z.string().uuid(),
+        })
+
+        const { id } = toogleHabitsParams.parse(request.params)
+
+        const today = dayjs().startOf('day').toDate()
+
+        let day = await prisma.day.findUnique({
+            where: {
+                date: today
+            }
+        })
+
+        if (!day) {
+            day = await prisma.day.create({
+                data: {
+                    date: today
+                }
+            })
+        }
+        const dayHabit = await prisma.dayHabit.findUnique({
+            where: {
+                day_id_habit_id: {
+                    day_id:day.id,
+                    habit_id: id,
+                }
+            }
+        })
+
+        if (dayHabit) {
+            await prisma.dayHabit.delete({
+                where: {
+                    id:dayHabit.id
+                }
+            })
+        } else {
+            //completar o habito
+            await prisma.dayHabit.create({
+                data: {
+                    day_id: day.id,
+                    habit_id: id,
+                }
+            })
+        }
+        
+        
+    })
 }
