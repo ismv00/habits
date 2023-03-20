@@ -1,4 +1,4 @@
-import './src/lib/dayjs';
+import "./src/lib/dayjs";
 import { StatusBar } from "react-native";
 import { Home } from "./src/screens/Home";
 import {
@@ -8,7 +8,9 @@ import {
   Inter_700Bold,
   Inter_800ExtraBold,
 } from "@expo-google-fonts/inter";
+
 import { Loading } from "./src/components/Loading";
+import { Routes } from "./src/routes";
 
 export default function App() {
   //MARK: Garantir que o app carregue as fonts antes de abrir
@@ -28,7 +30,7 @@ export default function App() {
 
   return (
     <>
-      <Home />
+      <Routes />
       <StatusBar
         barStyle={"light-content"}
         backgroundColor="transparent"
