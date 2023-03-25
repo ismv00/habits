@@ -10,11 +10,11 @@ interface HabitListProps {
 }
 
 interface HabistInfo {
-  possiblehabits: {
+  possibleHabits: {
     id: string;
     title: string;
     createa_at: string;
-  }[];
+  }[]
   completedHabits: string[];
 }
 
@@ -22,8 +22,7 @@ export function HabitList({ date, onCompletedChanged }: HabitListProps) {
   const [habitsInfo, setHabitsInfo] = useState<HabistInfo>();
 
   useEffect(() => {
-    api
-      .get("day", {
+    api.get("day", {
         params: {
           date: date.toISOString(),
         },
@@ -34,20 +33,17 @@ export function HabitList({ date, onCompletedChanged }: HabitListProps) {
   }, []);
 
   async function handleTooglehabit(habitId: string) {
-    const isHabitAlreadyCompleted =
-      habitsInfo!.completedHabits.includes(habitId);
+    const isHabitAlreadyCompleted = habitsInfo!.completedHabits.includes(habitId);
     await api.patch(`/habits/${habitId}/toogle`);
 
     let completedHabits: string[] = [];
     if (isHabitAlreadyCompleted) {
-      completedHabits = habitsInfo!.completedHabits.filter(
-        (id) => id !== habitId
-      );
+      completedHabits = habitsInfo!.completedHabits.filter((id) => id !== habitId);
     } else {
       completedHabits = [...habitsInfo!.completedHabits, habitId];
     }
     setHabitsInfo({
-      possiblehabits: habitsInfo!.possiblehabits,
+      possibleHabits: habitsInfo!.possibleHabits,
       completedHabits,
     });
 
@@ -58,7 +54,7 @@ export function HabitList({ date, onCompletedChanged }: HabitListProps) {
 
   return (
     <div className="mt-6 flex flex-col gap-3">
-      {habitsInfo?.possiblehabits.map((habit) => {
+      {habitsInfo?.possibleHabits.map(habit => {
         return (
           <Checkbox.Root
             key={habit.id}
