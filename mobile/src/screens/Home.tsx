@@ -1,11 +1,11 @@
-import { useNavigation } from "@react-navigation/native";
-import dayjs from "dayjs";
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { Text, View, ScrollView, Alert } from "react-native";
+import { api } from "../lib/axios";
+import dayjs from "dayjs";
 import { HabitDay, DAY_SIZE } from "../components/HabitDay";
 import { Header } from "../components/Header";
 import { Loading } from "../components/Loading";
-import { api } from "../lib/axios";
 import { generateRangeDatesFromYearStart } from "../utils/generate-range-between-dates";
 
 const weekDays = ["D", "S", "T", "Q", "Q", "S", "S"];
@@ -29,7 +29,6 @@ export function Home() {
     try {
       setLoading(true);
       const response = await api.get("/summary");
-      console.log(response);
       setSummary(response.data);
     } catch (error) {
       Alert.alert("Ops", "Não foi possível carregar o sumário");
@@ -39,9 +38,11 @@ export function Home() {
     }
   }
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      fetchData();
+    }, [])
+  );
 
   if (loading) {
     return <Loading />;
