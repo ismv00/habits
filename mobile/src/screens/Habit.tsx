@@ -1,15 +1,17 @@
-import { ScrollView, View, Text, Alert } from "react-native";
+import { useEffect, useState } from "react";
 import { useRoute } from "@react-navigation/native";
-import { BackButton } from "../components/BackButton";
+import { ScrollView, View, Text, Alert } from "react-native";
 import dayjs from "dayjs";
+import clsx from "clsx";
+
+import { api } from "../lib/axios";
+import { generateProgressPercentage } from "../utils/generate-progress-percentage";
+
+import { BackButton } from "../components/BackButton";
 import { ProgressBar } from "../components/ProgressBar";
 import { CheckBox } from "../components/CheckBox";
-import { useEffect, useState } from "react";
 import { Loading } from "../components/Loading";
-import { generateProgressPercentage } from "../utils/generate-progress-percentage";
-import { api } from "../lib/axios";
 import { HabitsEmpty } from "../components/HabitsEmpty";
-import clsx from "clsx";
 
 interface Params {
   date: string;
@@ -49,7 +51,7 @@ export function Habit() {
 
       const response = await api.get("/day", { params: { date } });
       setDayInfo(response.data);
-      setCompletedHabits(response.data.completed ?? []);
+      setCompletedHabits(response.data.completedHabits ?? []);
     } catch (error) {
       console.log(error);
       Alert.alert(
