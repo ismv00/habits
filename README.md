@@ -2,7 +2,10 @@
 
 - Aplicação desenvolvida em parceria com a RocketSeat. O Habits tem o conceito de ser o aplicativo que vai lhe lembrar de manter bons hábitos. Será possível com ele criar novos hábitos, organizar, e listar seus hábitos.
 
-<img src="Simulator Screen Shot - iPhone 14 Pro - 2023-03-27 at 00.16.53.png" alt="Imagem do projeto no smartphone" width="400" height="800">
+![image](https://user-images.githubusercontent.com/62908769/227840614-a039b4f3-2d43-43e9-8a55-667a0b12369b.png)
+![image](https://user-images.githubusercontent.com/62908769/227840699-704f57a3-36ae-4b03-8cd7-af402399270a.png)
+
+
 
 ## Contribuições
 
