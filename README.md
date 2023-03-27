@@ -1,4 +1,6 @@
-# habits
+# Habits
+
+- Aplicação desenvolvida em parceria com a RocketSeat. O Habits tem o conceito de ser o aplicativo que vai lhe lembrar de manter bons hábitos. Será possível com ele criar novos hábitos, organizar, e listar seus hábitos.
 
 ## Contribuições
 
