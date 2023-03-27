@@ -1,7 +1,7 @@
-import { prisma } from "./lib/prisma";
-import { FastifyInstance } from "fastify";
-import { z } from "zod";
 import dayjs from "dayjs";
+import { FastifyInstance } from "fastify";
+import { prisma } from "./lib/prisma";
+import { z } from "zod";
 
 export async function appRoutes(app: FastifyInstance) {
   app.post("/habits", async (request) => {
@@ -54,7 +54,7 @@ export async function appRoutes(app: FastifyInstance) {
       },
     });
 
-    const day = await prisma.day.findUnique({
+    const day = await prisma.day.findFirst({
       where: {
         date: parsedDate.toDate(),
       },

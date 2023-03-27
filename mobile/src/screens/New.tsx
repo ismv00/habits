@@ -15,13 +15,13 @@ import colors from "tailwindcss/colors";
 import { api } from "../lib/axios";
 
 const availableWeekDays = [
+  "Domingo",
   "Segunda-feira",
   "Terça-feira",
   "Quarta-feira",
   "Quinta-feira",
   "Sexta-feira",
   "Sábado",
-  "Domingo",
 ];
 export function New() {
   const [weekDays, setWeekDays] = useState<number[]>([]);
